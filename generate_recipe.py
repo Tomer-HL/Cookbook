@@ -471,11 +471,20 @@ txt_he = f"{recipe_name}_he.txt"
 
 # מחפש תמונה אוטומטית (.png/.jpg/.jpeg)
 image_file = None
+images_dir = Path("images")
+images_dir.mkdir(exist_ok=True)  # יוצר תיקיית images אם אין
+
 for ext in [".png", ".jpg", ".jpeg"]:
-    possible_file = f"{recipe_name}{ext}"
-    if Path(possible_file).exists():
-        image_file = possible_file
+    possible_file = Path(f"{recipe_name}{ext}")
+    if possible_file.exists():
+        # מעתיק את התמונה לתיקיית images
+        target_file = images_dir / possible_file.name
+        if not target_file.exists():
+            target_file.write_bytes(possible_file.read_bytes())
+        # נתיב התמונה ל-HTML
+        image_file = f"images/{possible_file.name}"
         break
+
 if image_file is None:
     print(f"⚠️ לא נמצאה תמונה עבור {recipe_name}. המתכון ייווצר בלי תמונה.")
 
