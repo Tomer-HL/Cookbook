@@ -4,7 +4,7 @@
 # Config - שנה לפי הצורך
 # -----------------------------
 REPO_DIR="$HOME/.local/share/Cookbook"   # נתיב למיקום הפרויקט שלך ב‑WSL
-PYTHON_SCRIPT="build_recipes.py"         # השם של הסקריפט שלך
+PYTHON_SCRIPT="generate_recipe.py"         # השם של הסקריפט שלך
 COMMIT_MSG="Update recipes HTML + images"
 
 # -----------------------------
