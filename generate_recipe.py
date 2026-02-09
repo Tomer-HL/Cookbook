@@ -178,7 +178,7 @@ def parse_recipe_file(path):
 # -----------------------------
 # Main
 # -----------------------------
-recipe_name = "Shakshuka"
+recipe_name = "Shnitzel"
 txt_en = f"{recipe_name}_en.txt"
 txt_he = f"{recipe_name}_he.txt"
 
