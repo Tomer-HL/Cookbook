@@ -3,18 +3,228 @@
 <head>
 <meta charset="UTF-8">
 <title>שניצל ישראלי קריספי</title>
+
 <style>
-/* ... כל שאר ה-CSS נשאר זהה ... */
+:root {
+    --main-orange: #d35400;
+    --ingredient-bullet: #d35400;
+    --section-bg: #fffaf0;
+}
+
+body {
+    font-family: Alef, system-ui, sans-serif;
+    background: linear-gradient(180deg, #fdf8f0 0%, #fffefc 100%);
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;       /* גובה מינימום של כל החלון */
+    max-width: 900px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    padding: 28px 32px 32px;
+    position: relative;
+}
+.hero {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-top: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+.lang-switch {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 14px;
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+}
+.lang-switch img {
+    width: 20px;
+    height: 14px;
+}
+.header-bar {
+    height: 3px;
+    background: var(--main-orange);
+    border-radius: 2px;
+    margin-bottom: 18px;
+}
+.header {
+    margin-bottom: 20px;
+}
+.tag {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 12px;
+    color: #7a7a7a;
+}
+h1 {
+    margin: 6px 0;
+    font-size: 32px;
+    color: var(--main-orange);
+}
+.subtitle {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 10px;
+}
+.description {
+    font-size: 15px;
+    color: #444;
+}
+.meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 16px;
+}
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    color: #23412f;
+}
+.meta-item span.icon {
+    font-size: 30px;
+}
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 32px;
+    margin-top: 28px;
+}
+h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--main-orange);
+}
+.section-box {
+    background: var(--section-bg);
+    border: 1px solid #f7d8c5;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+ul {
+    list-style: none;
+    padding-right: 28px;
+    margin: 0;
+}
+ul li {
+    position: relative;
+    padding-right: 28px;
+    margin-bottom: 6px;
+}
+ul li::before {
+    content: "❖";  /* מעוין כתום */
+    color: var(--ingredient-bullet);
+    position: absolute;
+    right: 0;
+}
+ol {
+    list-style: none;
+    counter-reset: step-counter;
+    padding-right: 0;
+    margin: 0;
+}
+ol li {
+    counter-increment: step-counter;
+    position: relative;
+    margin-bottom: 14px;
+    padding-right: 36px;  /* יותר מקום למספר */
+    font-size: 15px;
+}
+ol li::before {
+    content: counter(step-counter);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--main-orange);
+    color: #fff;
+    text-align: center;
+    line-height: 28px;
+    font-weight: bold;
+}
+
+.divider {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    height: 2px;
+    background: linear-gradient(to right, var(--main-orange) 10%, #fff 50%, var(--main-orange) 90%);
+    margin: 20px 0;
+}
+/* TIP box – תואם עיצוב מתכון */
+.tip {
+    border: 2px solid var(--main-orange);
+    background: #fff7f0;
+    border-radius: 12px;
+    padding: 12px;
+    margin: 12px 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #6b2e1a;
+}
+.tip-label {
+    font-weight: bold;
+    color: var(--main-orange);
+}
+.print-button {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 4px 8px;
+    font-size: 12px;
+    border: none;
+    border-radius: 5px;
+    background: var(--main-orange);
+    color: white;
+    cursor: pointer;
+    z-index: 20;
+}
+.print-button:hover {
+    background: #e67e22;
+}
+.footer {
+    padding: 12px 0;
+    font-size: 13px;
+    color: #555;
+    text-align: center;
+    border-top: 1px solid #f0e0d0;
+    margin-top: 24px;  /* רווח מהתוכן שמעל */
+    background: transparent; /* אין רקע חזק שמכסה את העמוד */
+}
 </style>
 </head>
+
 <body>
 <div class="page">
-<button class="print-button" onclick="window.print()">🖨️ הדפסה</button>
+
+<button class="print-button" onclick="window.open('Shnitzel_he_print.html', '_blank')">🖨️ הדפסה</button>
+
 <div class="lang-switch">
     <a href="Shnitzel_en.html"><img src="flag_gb.png" alt="English"> English</a>
 </div>
-<img class="hero" src="images/Shnitzel.png" alt="שניצל ישראלי קריספי">
+
+
+
 <div class="header-bar"></div>
+
 <div class="header">
     <div class="tag">מתכון</div>
     <h1>שניצל ישראלי קריספי</h1>
@@ -35,34 +245,63 @@
 מטבוחה
 
 תוספת חריפה כמו סחוג תימני או חריסה</div>
+
     <div class="meta">
-        <div class="meta-item"><span class="icon">🕒</span> <b>זמן:</b> 40 דקות</div>
-        <div class="meta-item"><span class="icon">🍽️</span> <b>מנות:</b> 4</div>
-        <div class="meta-item"><span class="icon">🧑‍🍳</span> <b>רמת קושי:</b> קל</div>
+        <div class="meta-item"><span class="icon">🕒</span> <b>זמן:</b> 45 דקות</div>
+        <div class="meta-item"><span class="icon">🍽️</span> <b>מנות:</b> 6</div>
+        <div class="meta-item"><span class="icon">🧑‍🍳</span> <b>רמת קושי:</b> קל-מתקדם</div>
     </div>
 </div>
+
 <div class="section-box">
     <h2>מצרכים</h2>
     <ul>
         <li>6–8 חצאי חזה עוף ללא עור ועצמות, פרוסים לעובי של כ־½ ס״מ</li><li>שקית קטנה של ביסלי בטעם ברביקיו (כ־70 גרם) – אופציונלי</li><li>2–3 כוסות פירורי לחם פנקו</li><li>1 כף שומשום</li><li>1 כפית תבלין גריל / על-האש</li><li>1 כוס קמח או קורנפלור</li><li>½ כפית מלח</li><li>2 ביצים</li><li>1 כפית חרדל</li><li>1 כוס שמן קנולה או שמן צמחי לטיגון</li>
     </ul>
 </div>
+
 <div class="divider"></div>
+
 <div class="section-box">
     <h2>הוראות הכנה</h2>
     <ol>
         <li>הכנת העוף
-פורסים את חזות העוף לפרוסות דקות של שניצל ומניחים על מגש רחב.
-מפזרים מעט מלח ונותנים לעוף לנוח כ־10 דקות.
-לאחר מכן מנגבים את הפרוסות היטב בנייר סופג.</li><li>הכנת תחנות הציפוי</li><li>צלחת ראשונה: קמח</li><li>צלחת שנייה: ביצים טרופות עם מלח, תיבול גריל/על-האש וחרדל</li><li>קערה או מגש: פנקו, שומשום וביסלי גריל כתוש דק</li><li>טיפ: עובדים ביד אחת עם החומרים היבשים וביד השנייה עם הביצה – כך הידיים נשארות נקיות יותר.</li><li>ציפוי השניצלים
-טובלים כל פרוסת עוף לפי הסדר:
-קמח → ביצה → תערובת פירורי הלחם והביסלי
-בשלב הפנקו לוחצים בעדינות עם כף היד כדי לשטח את השניצל ולעזור לציפוי להידבק.
-ומצפים את כל חתיכות העוף לפני שמתחילים בטיגון.</li><li>טיגון
-מחממים מחצית מהשמן במחבת עמוקה על אש בינונית-גבוהה.
-מטגנים את השניצלים עד להזהבה מלאה ופריכות.</li>
+<p>פורסים את חזות העוף לפרוסות דקות של שניצל ומניחים על מגש רחב.</p>
+<p>מפזרים מעט מלח ונותנים לעוף לנוח כ־10 דקות.</p>
+<p>לאחר מכן מנגבים את הפרוסות היטב בנייר סופג.</p>
+</li>
+<br>
+<li>הכנת תחנות הציפוי
+</li>
+<br>
+<li>צלחת ראשונה: קמח
+</li>
+<br>
+<li>צלחת שנייה: ביצים טרופות עם מלח, תיבול גריל/על-האש וחרדל
+</li>
+<br>
+<li>קערה או מגש: פנקו, שומשום וביסלי גריל כתוש דק
+</li>
+<br>
+<li>טיפ: עובדים ביד אחת עם החומרים היבשים וביד השנייה עם הביצה – כך הידיים נשארות נקיות יותר.
+</li>
+<br>
+<li>ציפוי השניצלים
+<p>טובלים כל פרוסת עוף לפי הסדר:</p>
+<p>קמח → ביצה → תערובת פירורי הלחם והביסלי</p>
+<p>בשלב הפנקו לוחצים בעדינות עם כף היד כדי לשטח את השניצל ולעזור לציפוי להידבק.</p>
+<p>ומצפים את כל חתיכות העוף לפני שמתחילים בטיגון.</p>
+</li>
+<br>
+<li>טיגון
+<p>מחממים מחצית מהשמן במחבת עמוקה על אש בינונית-גבוהה.</p>
+<p>מטגנים את השניצלים עד להזהבה מלאה ופריכות.</p>
+</li>
     </ol>
 </div>
+
+<div class="footer">
+    כל הזכויות שמורות לתומר הלל לב ©
 </div>
 </body>
 </html>

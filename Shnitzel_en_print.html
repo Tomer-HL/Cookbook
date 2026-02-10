@@ -4,10 +4,156 @@
 <meta charset="UTF-8">
 <title> – Print</title>
 <style>
-/* ... כל ה-CSS של הדפסה ... */
+:root {
+    --main-orange: #d35400;
+    --ingredient-bullet: #d35400;
+    --section-bg: #fffaf0;
+}
+
+body {
+    font-family: Georgia, serif;
+    padding: 40px;
+    max-width: 800px;
+    margin: auto;
+    line-height: 1.5;
+    background: #fff;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: var(--main-orange);
+}
+h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--main-orange);
+}
+.section-box {
+    background: var(--section-bg);
+    border: 1px solid #f7d8c5;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+ul {
+    list-style: none;
+    padding-left: 28px;
+    margin: 0;
+}
+ul li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 6px;
+}
+ul li::before {
+    content: "❖";  /* מעוין כתום */
+    color: var(--ingredient-bullet);
+    position: absolute;
+    left: 0;
+}
+ol {
+    list-style: none;
+    counter-reset: step-counter;
+    padding-left: 0;
+    margin: 0;
+}
+ol li {
+    counter-increment: step-counter;
+    position: relative;
+    margin-bottom: 14px;
+    padding-left: 36px;  /* יותר מקום למספר */
+    font-size: 15px;
+}
+ol li::before {
+    content: counter(step-counter);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--main-orange);
+    color: #fff;
+    text-align: center;
+    line-height: 28px;
+    font-weight: bold;
+}
+
+.divider {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    height: 2px;
+    background: linear-gradient(to right, var(--main-orange) 10%, #fff 50%, var(--main-orange) 90%);
+    margin: 20px 0;
+}
+
+.tip {
+    border: 1px solid var(--main-orange);
+    background-color: #fff5ec;
+    color: #d35400;
+    padding: 8px 12px;
+    margin: 8px 0;
+    border-radius: 6px;
+    font-weight: bold;
+}
+.footer {
+    padding: 12px 0;
+    font-size: 13px;
+    color: #555;
+    text-align: center;
+    border-top: 1px solid #f0e0d0;
+    margin-top: 24px;  /* רווח מהתוכן שמעל */
+    background: transparent; /* אין רקע חזק שמכסה את העמוד */
+}
+@media print {
+    body {
+        padding: 12px;          /* פחות רווחים סביב */
+        max-width: 100%;        /* למצות את רוחב הדף */
+        font-size: 12px;        /* להקטין מעט את הפונט */
+        line-height: 1.3;       /* רווחים דחוסים יותר */
+    }
+    h1 {
+        font-size: 24px;        /* כותרת מעט קטנה יותר */
+    }
+    h2 {
+        font-size: 16px;
+    }
+    ol li {
+        counter-increment: step-counter;
+        position: relative;
+        margin-bottom: 8px;      /* רווח קטן בין שלבים */
+        padding-left: 32px;       /* יותר מקום למספר */
+        font-size: 11px;          /* קטן יותר כדי להדפיס */
+        line-height: 1.3;         /* מספיק מקום למספר והטקסט */
+        word-wrap: break-word;    /* שובר מילים ארוכות */
+    }
+    ol li::before {
+        width: 24px;   /* עיגול קטן יותר */
+        height: 24px;
+        line-height: 24px;
+    }
+    ul li {
+        padding-left: 24px;
+        margin-bottom: 4px;
+    }
+    .section-box {
+        padding: 10px;
+        margin-bottom: 8px;
+    }
+    .footer {
+        font-size: 11px;
+        margin-top: 16px;
+    }
+    img.hero {
+        display: none;          /* לא להראות תמונה בהדפסה */
+    }
+}
 </style>
 </head>
 <body>
+
 <h1></h1>
 <p class="description">Classic Israeli schnitzel is often served in a baguette or pita with:
 - Israeli salad  
@@ -19,31 +165,54 @@
 - spicy touch like Yemenite schug or harissa  
 
 If you want, I can also adapt this recipe for oven baking or air-frying.</p>
+
 <button class="print-button" onclick="window.print()">🖨️ Print</button>
+
 <div class="section-box">
     <h2>Ingredients</h2>
     <ul>
         <li>6–8 skinless, boneless chicken breast halves, sliced to about 1/4inch thickness</li><li>1 small bag of BBQ flavored Bissli (about 2.5 oz / 70 g)  - optional</li><li>2–3 cups panko breadcrumbs</li><li>1 tbsp sesame</li><li>1 tbsp BBQ/grill spice mix or paprika</li><li>1 cup flour or cornstarch</li><li>1/2 tsp of salt</li><li>2 eggs</li><li>1 tsp mustard</li><li>1 cup canola or vegetable oil for frying</li>
     </ul>
 </div>
+
 <div class="divider"></div>
+
 <div class="section-box">
     <h2>Instructions</h2>
     <ol>
-        <li>1. Prepare the chicken  
-Slice the chicken breasts into thin schnitzel pieces and place them on a wide tray.  
-Sprinkle with a bit of salt and let sit for 10 minutes.  
-Afterward, pat the pieces dry with paper towels.</li><li>2. Set up your coating stations  
-- Plate 1: flour  
-- Plate 2: beaten eggs + salt + BBQ/paprika seasoning + mustard
-- Bowl/tray: panko + sesame + finely crushed BBQ Bissli +</li><li>Tip: Use one hand for the dry ingredients (flour and breadcrumb mix) and the other hand for the wet ingredients (egg). This keeps your hands cleaner.</li><li>3. Coat the schnitzels  
-Dip each chicken piece in this order:  
-Flour → Egg → Breadcrumbs/Bissli mixture 
-When coating with breadcrumbs, press down with your palm to flatten the schnitzel and help the coating stick.</li><li>4. Finish coating  
-Coat all the chicken pieces before you begin frying.</li><li>5. Frying  
-Heat half of the oil in a deep skillet over medium-high heat.  
-Fry the schnitzels until golden and crispy.</li>
+        <li>1. Prepare the chicken
+<p>Slice the chicken breasts into thin schnitzel pieces and place them on a wide tray.</p>
+<p>Sprinkle with a bit of salt and let sit for 10 minutes.</p>
+<p>Afterward, pat the pieces dry with paper towels.</p>
+</li>
+<br>
+<li>2. Set up your coating stations
+<p>- Plate 1: flour</p>
+<p>- Plate 2: beaten eggs + salt + BBQ/paprika seasoning + mustard</p>
+<p>- Bowl/tray: panko + sesame + finely crushed BBQ Bissli +</p>
+</li>
+<br>
+<li>Tip: Use one hand for the dry ingredients (flour and breadcrumb mix) and the other hand for the wet ingredients (egg). This keeps your hands cleaner.
+</li>
+<br>
+<li>3. Coat the schnitzels
+<p>Dip each chicken piece in this order:</p>
+<p>Flour → Egg → Breadcrumbs/Bissli mixture</p>
+<p>When coating with breadcrumbs, press down with your palm to flatten the schnitzel and help the coating stick.</p>
+</li>
+<br>
+<li>4. Finish coating
+<p>Coat all the chicken pieces before you begin frying.</p>
+</li>
+<br>
+<li>5. Frying
+<p>Heat half of the oil in a deep skillet over medium-high heat.</p>
+<p>Fry the schnitzels until golden and crispy.</p>
+</li>
     </ol>
+</div>
+<div class="footer">
+    © 2026 Tomer Hillel Lev. All rights reserved.
 </div>
 </body>
 </html>
