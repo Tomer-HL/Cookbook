@@ -596,15 +596,16 @@ recipe_name = "Shnitzel"
 txt_en = f"{recipe_name}_en.txt"
 txt_he = f"{recipe_name}_he.txt"
 
-# מחפש תמונה אוטומטית (.png/.jpg/.jpeg)
-image_file = None
-for ext in [".png", ".jpg", ".jpeg"]:
-    possible_file = f"{recipe_name}{ext}"
-    if Path(possible_file).exists():
-        image_file = possible_file
+# מחפש כל קובץ תמונה עם השם Shnitzel, בלי קשר לאותיות
+for file in Path(".").glob(f"{recipe_name}.*"):
+    if file.suffix.lower() in [".png", ".jpg", ".jpeg"]:
+        image_file = str(file)
         break
+
 if image_file is None:
     print(f"⚠️ לא נמצאה תמונה עבור {recipe_name}. המתכון ייווצר בלי תמונה.")
+else:
+    print(f"✅ התמונה שנבחרה: {image_file}")
 
 # זמן ורמת קושי
 time_en, level_en = "45 minutes", "Easy–Intermediate"
